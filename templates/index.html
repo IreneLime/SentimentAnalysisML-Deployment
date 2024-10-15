@@ -1,0 +1,36 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Flasky{% endblock %}
+
+{% block content %}
+<div class="container">
+ {% for message in get_flashed_messages() %}
+ <div class="alert alert-warning">
+ <button type="button" class="close" data-dismiss="alert">&times;</button>
+ {{ message }}
+ </div>
+ {% endfor %}
+{% block page_content %}
+ <div class="page-header">
+  <h1>Fake News Detector</h1>
+ </div>
+
+ {{ wtf.quick_form(form) }}
+
+ {% if user_input %}
+ <div class="text-left">
+    <strong>Input:</strong> {{ user_input }}
+ </div>
+ {% endif %}
+
+
+ {% if output %}
+ <div class="alert alert-info mt-4">
+    <strong>Result:</strong> {{ output }}
+ </div>
+ {% endif %}
+
+ {% endblock %}
+
+</div>
+{% endblock %}
